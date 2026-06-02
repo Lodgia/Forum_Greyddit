@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <title>Reddit Clone</title>
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo">RedditClone</div>
+        <button id="theme-toggle" class="btn">Changer de thème</button>
+    </header>
+
+    <main class="container">
+        <section class="feed">
+            <article class="post">
+                <div class="votes">
+                    <button class="vote-btn upvote" onclick="animateVote(this)">▲</button>
+                    <span class="score">42</span>
+                    <button class="vote-btn downvote" onclick="animateVote(this)">▼</button>
+                </div>
+                <div class="post-content">
+                    <p class="post-meta">Posté dans r/golang par u/DevSenior</p>
+                    <h2 class="post-title">Pourquoi Go est parfait pour ce projet ?</h2>
+                    <p class="post-text">Pas de framework lourd, de la performance brute, et une gestion de la concurrence native !</p>
+                </div>
+            </article>
+        </section>
+        
+        <aside class="sidebar">
+            <h3>À propos</h3>
+            <p>Bienvenue sur notre Reddit fait maison en pur Go/SQL/JS.</p>
+        </aside>
+    </main>
+
+    <script src="/static/js/main.js"></script>
+</body>
+</html>
