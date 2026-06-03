@@ -3,14 +3,9 @@ package backend
 import (
 	"database/sql"
 	"fmt"
+	"golang.org/x/crypto/bcrypt"
 	_ "github.com/mattn/go-sqlite3"
 )
-
-  //nom de la base de données
-
-func HashPassword(password string) string {
-	return password
-}
 
 func VerifyPassword(user, password string) int {
 	db, err := sql.Open("sqlite3", "./base.db")
@@ -24,7 +19,7 @@ func VerifyPassword(user, password string) int {
 	}
 	defer rows.Close()
 
-	passwordHash := HashPassword(password)
+	passwordHash := bcrypt.HashPassword(password, bcrypt.DefaultCost)
 	for rows.Next() {
     	var id int
 		var name string
