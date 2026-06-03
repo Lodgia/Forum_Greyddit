@@ -1,4 +1,4 @@
-package main
+package backend
 
 import (
 	"database/sql"
@@ -12,7 +12,12 @@ func HashPassword(password string) string {
 	return password
 }
 
-func VerifyPassword(db *sql.DB, user, password string) int {
+func VerifyPassword(user, password string) int {
+	db, err := sql.Open("sqlite3", "./base.db")
+	if err != nil {
+		panic(err)
+	}
+	defer db.Close()
 	rows, err := db.Query("SELECT id, name, password FROM users")
 	if err != nil {
 		panic(err)
@@ -36,49 +41,8 @@ func VerifyPassword(db *sql.DB, user, password string) int {
 	return -1
 }
 
-func main() {
-	db, err := sql.Open("sqlite3", "./base.db")
-	if err != nil {
-		panic(err)
-	}
-	defer db.Close()
-
-	// Création de la table
-	createTable := `
-	CREATE TABLE IF NOT EXISTS users (
-		id INTEGER PRIMARY KEY AUTOINCREMENT,
-		name TEXT NOT NULL,
-		password TEXT NOT NULL
-	);
-	`
-
-	_, err = db.Exec(createTable)
-	if err != nil {
-		panic(err)
-	}
-
-	// Insertion de données
-	insertQuery := `
-	INSERT INTO users (id, name, password)
-	VALUES (?, ?, ?)
-	`
-
-	users := []struct {
-		Id       int
-		Name     string
-		Password string
-	}{
-		{1, "Alice", HashPassword("password1")},
-		{2, "Bob", HashPassword("password2")},
-	}
-
-	for _, user := range users {
-		_, err := db.Exec(insertQuery, user.Id, user.Name, user.Password)
-		if err != nil {
-			panic(err)
-		}
-	}
-	fmt.Println(VerifyPassword(db, "Alice", "password1")) // Devrait afficher 1
-	fmt.Println(VerifyPassword(db, "Bob", "password2"))   // Devrait afficher 2
-	fmt.Println(VerifyPassword(db, "Alice", "wrongpass")) // Devrait afficher -1
+func maintest() {
+	fmt.Println(VerifyPassword("Alice", "password1")) // Devrait afficher 1
+	fmt.Println(VerifyPassword("Bob", "password2"))   // Devrait afficher 2
+	fmt.Println(VerifyPassword("Alice", "wrongpass")) // Devrait afficher -1
 }
