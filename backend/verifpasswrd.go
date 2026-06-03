@@ -2,6 +2,7 @@ package main
 
 import (
 	"database/sql"
+	"fmt"
 	_ "github.com/mattn/go-sqlite3"
 )
 
@@ -11,7 +12,7 @@ func HashPassword(password string) string {
 	return password
 }
 
-func VerifyPassword(user, password string) int {
+func VerifyPassword(db *sql.DB, user, password string) int {
 	rows, err := db.Query("SELECT id, name, password FROM users")
 	if err != nil {
 		panic(err)
@@ -36,7 +37,7 @@ func VerifyPassword(user, password string) int {
 }
 
 func main() {
-	db, err = sql.Open("sqlite3", "./base.db")
+	db, err := sql.Open("sqlite3", "./base.db")
 	if err != nil {
 		panic(err)
 	}
@@ -77,7 +78,7 @@ func main() {
 			panic(err)
 		}
 	}
-	fmt.Println(VerifyPassword("Alice", "password1")) // Devrait afficher 1
-	fmt.Println(VerifyPassword("Bob", "password2"))   // Devrait afficher 2
-	fmt.Println(VerifyPassword("Alice", "wrongpass")) // Devrait afficher -1
+	fmt.Println(VerifyPassword(db, "Alice", "password1")) // Devrait afficher 1
+	fmt.Println(VerifyPassword(db, "Bob", "password2"))   // Devrait afficher 2
+	fmt.Println(VerifyPassword(db, "Alice", "wrongpass")) // Devrait afficher -1
 }
