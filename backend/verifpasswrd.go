@@ -6,8 +6,6 @@ import (
 	_ "github.com/mattn/go-sqlite3"
 )
 
-  //nom de la base de données
-
 func HashPassword(password string) string {
 	return password
 }
