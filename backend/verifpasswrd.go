@@ -5,13 +5,14 @@ import (
 	_ "github.com/mattn/go-sqlite3"
 )
 
-var db, err = sql.Open("sqlite3", "./base.db") //nom de la base de données
+  //nom de la base de données
 
 func HashPassword(password string) string {
 	return password
 }
 
 func VerifyPassword(user, password string) int {
+	db, err = sql.Open("sqlite3", "./base.db")
 	rows, err := db.Query("SELECT id, name, password FROM users")
 	if err != nil {
 		panic(err)
