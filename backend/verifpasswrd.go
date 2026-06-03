@@ -12,7 +12,6 @@ func HashPassword(password string) string {
 }
 
 func VerifyPassword(user, password string) int {
-	db, err = sql.Open("sqlite3", "./base.db")
 	rows, err := db.Query("SELECT id, name, password FROM users")
 	if err != nil {
 		panic(err)
@@ -37,6 +36,7 @@ func VerifyPassword(user, password string) int {
 }
 
 func main() {
+	db, err = sql.Open("sqlite3", "./base.db")
 	if err != nil {
 		panic(err)
 	}
