@@ -36,7 +36,7 @@ func VerifyPassword(user, password string) int {
 	return -1
 }
 
-func maintest() {
+func maintestpwd() {
 	fmt.Println(VerifyPassword("Alice", "password1")) // Devrait afficher 1
 	fmt.Println(VerifyPassword("Bob", "password2"))   // Devrait afficher 2
 	fmt.Println(VerifyPassword("Alice", "wrongpass")) // Devrait afficher -1
