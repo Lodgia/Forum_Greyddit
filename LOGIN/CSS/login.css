@@ -1,34 +1,186 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 body {
-  color: whitesmoke;
-  background-color: orangered;
-}
-.button {
-  border: 0;
-  line-height: 2.5;
-  padding: 0 20px;
-  font-size: 1rem;
-  text-align: center;
-  color: white;
-  text-shadow: 1px 1px 1px black;
-  border-radius: 10px;
-  background-color: blue;
-  background-image: linear-gradient(
-    to top left,
-    rgb(0 0 0 / 20%),
-    rgb(0 0 0 / 20%) 30%,
-    transparent
-  );
-  box-shadow:
-    inset 2px 2px 3px rgb(255 255 255 / 60%),
-    inset -2px -2px 3px rgb(0 0 0 / 60%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #485160;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    color: #ffffff;
 }
 
-.button:hover {
-  background-color:blue;
+
+.card {
+    background-color: #9ca6bb;
+    border-radius: 24px;
+    padding: 2.5rem 2.25rem;
+    width: 100%;
+    max-width: 420px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
 }
 
-.button:active {
-  box-shadow:
-    inset -2px -2px 3px rgb(255 255 255 / 60%),
-    inset 2px 2px 3px rgb(0 0 0 / 60%);
+
+.avatar {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background-color: #b5c4dc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.2rem;
+}
+
+.avatar svg {
+    width: 40px;
+    height: 40px;
+    fill: #4c5970;
+}
+
+
+.card h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 1.8rem;
+    text-align: center;
+}
+
+
+.form-body {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    width: 100%;
+}
+
+.form-group label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #c8d6f0;
+    margin-left: 0.25rem;
+}
+
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-wrapper .icon {
+    position: absolute;
+    left: 14px;
+    width: 20px;
+    height: 20px;
+    color: #4c566a;
+    pointer-events: none;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.8rem 1rem 0.8rem 2.75rem;
+    background-color: #3b4657;
+    border: 1.5px solid #2d3849;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    color: #ffffff;
+    outline: none;
+    font-family: inherit;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group input::placeholder {
+    color: #505967;
+}
+
+.form-group input:focus {
+    border-color: #242c3a;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.18);
+}
+
+
+.forgot {
+    text-align: right;
+    margin-top: 0.25rem;
+}
+
+.forgot a {
+    font-size: 0.85rem;
+    color: #73859a;
+    text-decoration: none;
+}
+
+.forgot a:hover {
+    text-decoration: underline;
+}
+
+
+.btn-primary {
+    width: 100%;
+    padding: 0.9rem;
+    background-color: #2c3444;
+    color: #ffffff;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: background-color 0.2s, transform 0.1s;
+    font-family: inherit;
+}
+
+.btn-primary:hover {
+    background-color: #232b41;
+}
+
+.btn-primary:active {
+    transform: scale(0.98);
+}
+
+
+.form-footer {
+    margin-top: 1.4rem;
+    font-size: 0.9rem;
+    color: #92a4bd;
+    text-align: center;
+}
+
+.form-footer a {
+    color: #353f50;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.form-footer a:hover {
+    text-decoration: underline;
+}
+
+
+footer {
+    display: none;
+}
+
+
+@media (max-width: 480px) {
+    .card {
+        margin: 1rem;
+        padding: 2rem 1.5rem;
+    }
 }
