@@ -1,8 +1,9 @@
 package backend
 
 import (
-	"database/sql"
+	"html/template"
 	"net/http"
+	"database/sql"
 
 	_ "github.com/lib/pq" // Driver PostgreSQL
 )
@@ -13,12 +14,33 @@ type Application struct {
 }
 // Un handler de test pour la page d'accueil
 func HomeHandler(w http.ResponseWriter, r *http.Request) {
-	if r.URL.Path != "/" {
-		http.NotFound(w, r)
+	//tmplPath := filepath.Join("ui", "template", "register.html")
+
+	tmpl, err := template.ParseFiles("ui/templates/login.html")
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
-	w.Write([]byte("Bienvenue sur le clone de Reddit !"))
+
+	err = tmpl.Execute(w, nil)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
 }
 
-func SubredditHandler(w http.ResponseWriter, r *http.Request) {}
+func RegisterHandler(w http.ResponseWriter, r *http.Request) {
+	tmpl, err := template.ParseFiles("ui/templates/register.html")
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	err = tmpl.Execute(w, nil)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+}
+
 func PostCreateHandler(w http.ResponseWriter, r *http.Request) {}
