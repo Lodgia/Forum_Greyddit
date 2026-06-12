@@ -3,7 +3,7 @@ package backend
 import (
 	"database/sql"
 	"fmt"
-	"golang.org/x/crypto/bcrypt"
+	//"golang.org/x/crypto/bcrypt"
 	_ "github.com/mattn/go-sqlite3"
 )
 
@@ -19,7 +19,7 @@ func VerifyPassword(user, password string) int {
 	}
 	defer rows.Close()
 
-	passwordHash := bcrypt.HashPassword(password, bcrypt.DefaultCost)
+	passwordHash := password //bcrypt.HashPassword(password, bcrypt.DefaultCost)
 	for rows.Next() {
     	var id int
 		var name string
@@ -78,7 +78,7 @@ func CreateUser(name, password string) int {
 		return -1 // L'utilisateur existe déjà
 	}
 
-	passwordHash := bcrypt.HashPassword(password, bcrypt.DefaultCost)
+	passwordHash := password //bcrypt.HashPassword(password, bcrypt.DefaultCost)
 	_, err = db.Exec("INSERT INTO users (name, password) VALUES (?, ?)", name, passwordHash)
 	if err != nil {
 		panic(err)
