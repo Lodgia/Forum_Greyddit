@@ -1,0 +1,40 @@
+{{template "base" .}}
+
+{{define "title"}} — {{.Data.Post.Title}}{{end}}
+
+{{define "styles"}}
+<link rel="stylesheet" href="/static/css/index.css">
+<link rel="stylesheet" href="/static/css/post.css">
+{{end}}
+
+{{define "content"}}
+{{$post     := .Data.Post}}
+{{$comments := .Data.Comments}}
+
+<div class="page">
+  <main>
+    <div class="card">
+      <div class="post-detail-grid">
+        <div class="vote-col">
+          {{if $.CurrentUser}}
+            <form method="POST" action="/vote/post">
+              <input type="hidden" name="post_id" value="{{$post.ID}}">
+              <input type="hidden" name="value" value="1">
+              <button type="submit" class="vote-btn up{{if eq $post.UserVote 1}} active-up{{end}}">▲</button>
+            </form>
+          {{else}}
+            <span class="vote-btn up">▲</span>
+          {{end}}
+          <span class="vote-score">{{sub $post.Likes $post.Dislikes}}</span>
+          {{if $.CurrentUser}}
+            <form method="POST" action="/vote/post">
+              <input type="hidden" name="post_id" value="{{$post.ID}}">
+              <input type="hidden" name="value" value="-1">
+              <button type="submit" class="vote-btn down{{if eq $post.UserVote -1}} active-down{{end}}">▼</button>
+            </form>
+          {{else}}
+            <span class="vote-btn down">▼</span>
+          {{end}}
+        </div>
+
+        
