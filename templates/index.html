@@ -1,0 +1,119 @@
+{{template "base" .}}
+
+{{define "title"}} — Accueil{{end}}
+
+{{define "styles"}}
+<link rel="stylesheet" href="/static/css/index.css">
+{{end}}
+
+{{define "content"}}
+<div class="page">
+  <main>
+
+    <div class="filter-bar">
+      <a href="/" class="filter-pill{{if not .Data.Filter}} active{{end}}">Tous</a>
+      {{if $.CurrentUser}}
+        <a href="/?filter=mine"  class="filter-pill{{if eq .Data.Filter "mine"}} active{{end}}">Mes posts</a>
+        <a href="/?filter=liked" class="filter-pill{{if eq .Data.Filter "liked"}} active{{end}}">Likés</a>
+      {{end}}
+    </div>
+
+    {{if .Data.Category}}
+      <div class="page-heading">
+        <h1>Catégorie : {{.Data.Category}}</h1>
+        <a href="/" class="btn btn-ghost btn-sm">← Tout voir</a>
+      </div>
+    {{end}}
+
+    {{if .Data.Posts}}
+      {{range .Data.Posts}}
+      <div class="post-card">
+        <div class="vote-col">
+          {{if $.CurrentUser}}
+            <form method="POST" action="/vote/post">
+              <input type="hidden" name="post_id" value="{{.ID}}">
+              <input type="hidden" name="value" value="1">
+              <button type="submit" class="vote-btn up{{if eq .UserVote 1}} active-up{{end}}" title="Like">▲</button>
+            </form>
+          {{else}}
+            <span class="vote-btn up">▲</span>
+          {{end}}
+          <span class="vote-score{{if gt .Likes .Dislikes}} positive{{else if gt .Dislikes .Likes}} negative{{end}}">
+            {{sub .Likes .Dislikes}}
+          </span>
+          {{if $.CurrentUser}}
+            <form method="POST" action="/vote/post">
+              <input type="hidden" name="post_id" value="{{.ID}}">
+              <input type="hidden" name="value" value="-1">
+              <button type="submit" class="vote-btn down{{if eq .UserVote -1}} active-down{{end}}" title="Dislike">▼</button>
+            </form>
+          {{else}}
+            <span class="vote-btn down">▼</span>
+          {{end}}
+        </div>
+
+        <div class="post-body">
+          <div class="post-meta">
+            posté par <a href="#">{{.Username}}</a> · <time>{{.CreatedAt.Format "02/01/2006"}}</time>
+          </div>
+          <div class="post-title"><a href="/post/{{.ID}}">{{.Title}}</a></div>
+          {{if .Categories}}
+          <div class="post-cats">
+            {{range .Categories}}<a href="/category/{{.Slug}}" class="cat-tag">{{.Name}}</a>{{end}}
+          </div>
+          {{end}}
+          <div class="post-footer">
+            <a href="/post/{{.ID}}">💬 {{.CommentCount}} commentaire{{if gt .CommentCount 1}}s{{end}}</a>
+            {{if and $.CurrentUser (eq $.CurrentUser.ID .UserID)}}
+              <a href="/post/edit/{{.ID}}">✏️ Modifier</a>
+              <form method="POST" action="/post/delete/{{.ID}}" onsubmit="return confirm('Supprimer ce post ?')">
+                <button type="submit" class="btn-inline-delete">🗑️ Supprimer</button>
+              </form>
+            {{end}}
+          </div>
+        </div>
+      </div>
+      {{end}}
+    {{else}}
+      <div class="empty">
+        <div>📭</div>
+        <p>Aucun post pour l'instant.</p>
+        {{if $.CurrentUser}}
+          <a href="/post/create" class="btn btn-primary">Créer le premier post</a>
+        {{else}}
+          <a href="/register" class="btn btn-primary">S'inscrire pour poster</a>
+        {{end}}
+      </div>
+    {{end}}
+
+  </main>
+
+  <aside class="sidebar">
+    <div class="sidebar-card">
+      <h3>Catégories</h3>
+      <ul class="sidebar-cats">
+        {{range .Data.Categories}}
+        <li><a href="/category/{{.Slug}}">{{.Name}}</a></li>
+        {{end}}
+      </ul>
+    </div>
+
+    {{if $.CurrentUser}}
+    <div class="sidebar-card">
+      <h3>Mon compte</h3>
+      <p class="sidebar-account-name">Connecté en tant que <strong>{{$.CurrentUser.Username}}</strong></p>
+      <a href="/post/create" class="btn btn-primary btn-full">+ Nouveau post</a>
+    </div>
+    {{else}}
+    <div class="sidebar-card">
+      <h3>Rejoindre Greyddit</h3>
+      <p class="sidebar-account-name">Inscris-toi pour poster, commenter et voter.</p>
+      <div class="sidebar-cta">
+        <a href="/register" class="btn btn-primary btn-full">S'inscrire</a>
+        <a href="/login"    class="btn btn-ghost   btn-full">Se connecter</a>
+      </div>
+    </div>
+    {{end}}
+  </aside>
+</div>
+{{end}}
