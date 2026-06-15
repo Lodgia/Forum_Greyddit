@@ -1,0 +1,37 @@
+{{define "base"}}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Greyddit{{block "title" .}}{{end}}</title>
+  <link rel="stylesheet" href="/static/css/base.css">
+  {{block "styles" .}}{{end}}
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">grey<span>ddit</span></a>
+    <div class="nav-links">
+      <a href="/">Accueil</a>
+    </div>
+    <div class="nav-auth">
+      {{if .CurrentUser}}
+        <a href="/post/create" class="btn btn-primary">+ Poster</a>
+        <form method="POST" action="/logout">
+          <button type="submit" class="btn btn-ghost">Déconnexion</button>
+        </form>
+      {{else}}
+        <a href="/login" class="btn btn-ghost">Connexion</a>
+        <a href="/register" class="btn btn-primary">S'inscrire</a>
+      {{end}}
+    </div>
+  </div>
+</nav>
+
+{{block "content" .}}{{end}}
+
+</body>
+</html>
+{{end}}
