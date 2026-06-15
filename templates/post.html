@@ -37,4 +37,97 @@
           {{end}}
         </div>
 
-        
+        <div>
+          <div class="post-meta">
+            posté par <strong>{{$post.Username}}</strong>
+            · <time>{{$post.CreatedAt.Format "02/01/2006 à 15:04"}}</time>
+            {{range $post.Categories}}<a href="/category/{{.Slug}}" class="cat-tag">{{.Name}}</a> {{end}}
+          </div>
+          <h1 class="post-detail-title">{{$post.Title}}</h1>
+          <div class="post-detail-content">{{$post.Content}}</div>
+          {{if and $.CurrentUser (eq $.CurrentUser.ID $post.UserID)}}
+          <div class="post-detail-actions">
+            <a href="/post/edit/{{$post.ID}}" class="btn btn-ghost btn-sm">✏️ Modifier</a>
+            <form method="POST" action="/post/delete/{{$post.ID}}" onsubmit="return confirm('Supprimer ?')">
+              <button type="submit" class="btn btn-danger btn-sm">🗑️ Supprimer</button>
+            </form>
+          </div>
+          {{end}}
+        </div>
+      </div>
+    </div>
+
+    {{if $.CurrentUser}}
+    <div class="card">
+      <form method="POST" action="/comment/create">
+        <input type="hidden" name="post_id" value="{{$post.ID}}">
+        <div class="form-group">
+          <label for="comment-content">Ton commentaire</label>
+          <textarea id="comment-content" name="content" rows="3" placeholder="Qu'est-ce que tu en penses ?"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Commenter</button>
+      </form>
+    </div>
+    {{else}}
+    <div class="card">
+      <p class="auth-footer"><a href="/login">Connecte-toi</a> pour laisser un commentaire.</p>
+    </div>
+    {{end}}
+
+    <div class="card">
+      <div class="comments-header">{{len $comments}} commentaire{{if gt (len $comments) 1}}s{{end}}</div>
+      {{if $comments}}
+        {{range $comments}}
+        <div class="comment">
+          <div class="comment-vote">
+            {{if $.CurrentUser}}
+              <form method="POST" action="/vote/comment">
+                <input type="hidden" name="comment_id" value="{{.ID}}">
+                <input type="hidden" name="value" value="1">
+                <button type="submit" class="vote-btn up{{if eq .UserVote 1}} active-up{{end}}">▲</button>
+              </form>
+            {{else}}<span class="vote-btn up">▲</span>{{end}}
+            <span class="comment-score">{{sub .Likes .Dislikes}}</span>
+            {{if $.CurrentUser}}
+              <form method="POST" action="/vote/comment">
+                <input type="hidden" name="comment_id" value="{{.ID}}">
+                <input type="hidden" name="value" value="-1">
+                <button type="submit" class="vote-btn down{{if eq .UserVote -1}} active-down{{end}}">▼</button>
+              </form>
+            {{else}}<span class="vote-btn down">▼</span>{{end}}
+          </div>
+          <div>
+            <div class="comment-meta">
+              <strong>{{.Username}}</strong> · {{.CreatedAt.Format "02/01/2006 à 15:04"}}
+              {{if and $.CurrentUser (eq $.CurrentUser.ID .UserID)}}·
+                <form method="POST" action="/comment/delete/{{.ID}}?post_id={{$post.ID}}" onsubmit="return confirm('Supprimer ?')">
+                  <button type="submit" class="btn-inline-delete-comment">supprimer</button>
+                </form>
+              {{end}}
+            </div>
+            <div class="comment-text">{{.Content}}</div>
+          </div>
+        </div>
+        {{end}}
+      {{else}}
+        <div class="empty"><p>Pas encore de commentaires.</p></div>
+      {{end}}
+    </div>
+  </main>
+
+  <aside class="sidebar">
+    <div class="sidebar-card">
+      <h3>À propos du post</h3>
+      <div class="sidebar-info">
+        <div>👤 {{$post.Username}}</div>
+        <div>📅 {{$post.CreatedAt.Format "02/01/2006"}}</div>
+        <div>💬 {{len $comments}} commentaire{{if gt (len $comments) 1}}s{{end}}</div>
+        <div>👍 {{$post.Likes}} · 👎 {{$post.Dislikes}}</div>
+      </div>
+    </div>
+    <div class="sidebar-card">
+      <a href="/" class="btn btn-ghost btn-full">← Retour à l'accueil</a>
+    </div>
+  </aside>
+</div>
+{{end}}
