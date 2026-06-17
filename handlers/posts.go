@@ -1,9 +1,9 @@
 package handlers
 
 import (
-	"greyddit/database"
-	"greyddit/middleware"
-	"greyddit/models"
+	"Forum_Greyddit/database"
+	"Forum_Greyddit/middleware"
+	"Forum_Greyddit/models"
 	"net/http"
 	"strconv"
 	"strings"

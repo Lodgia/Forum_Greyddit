@@ -2,8 +2,8 @@ package middleware
 
 import (
 	"context"
-	"greyddit/database"
-	"greyddit/models"
+	"Forum_Greyddit/database"
+	"Forum_Greyddit/models"
 	"net/http"
 )
 

@@ -1,7 +1,7 @@
 package database
 
 import (
-	"greyddit/models"
+	"Forum_Greyddit/models"
 	"time"
 )
 

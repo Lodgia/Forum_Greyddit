@@ -1,9 +1,9 @@
 package main
 
 import (
-	"greyddit/database"
-	"greyddit/handlers"
-	"greyddit/middleware"
+	"Forum_Greyddit/database"
+	"Forum_Greyddit/handlers"
+	"Forum_Greyddit/middleware"
 	"log"
 	"net/http"
 	"time"
