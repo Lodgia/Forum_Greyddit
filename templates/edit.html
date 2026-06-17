@@ -1,0 +1,36 @@
+{{template "base" .}}
+
+{{define "title"}} — Modifier le post{{end}}
+
+{{define "styles"}}
+<link rel="stylesheet" href="/static/css/form.css">
+{{end}}
+
+{{define "content"}}
+{{$post := .Data.Post}}
+<div class="page-wide">
+  <div class="page-heading">
+    <h1>Modifier le post</h1>
+    <a href="/post/{{$post.ID}}" class="btn btn-ghost btn-sm">Annuler</a>
+  </div>
+  {{if and .Data .Data.Error}}
+    <div class="alert alert-error">{{.Data.Error}}</div>
+  {{end}}
+  <div class="card">
+    <form method="POST" action="/post/edit/{{$post.ID}}">
+      <div class="form-group">
+        <label for="title">Titre</label>
+        <input type="text" id="title" name="title" value="{{$post.Title}}" required maxlength="200">
+      </div>
+      <div class="form-group">
+        <label for="content">Contenu</label>
+        <textarea id="content" name="content" rows="8" required>{{$post.Content}}</textarea>
+      </div>
+      <div class="form-actions">
+        <a href="/post/{{$post.ID}}" class="btn btn-ghost">Annuler</a>
+        <button type="submit" class="btn btn-primary">Enregistrer</button>
+      </div>
+    </form>
+  </div>
+</div>
+{{end}}
