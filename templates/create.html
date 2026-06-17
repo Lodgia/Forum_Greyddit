@@ -1,0 +1,43 @@
+{{template "base" .}}
+
+{{define "title"}} — Nouveau post{{end}}
+
+{{define "styles"}}
+<link rel="stylesheet" href="/static/css/form.css">
+{{end}}
+
+{{define "content"}}
+<div class="page-wide">
+  <div class="page-heading">
+    <h1>Créer un post</h1>
+    <a href="/" class="btn btn-ghost btn-sm">Annuler</a>
+  </div>
+  {{if and .Data .Data.Error}}
+    <div class="alert alert-error">{{.Data.Error}}</div>
+  {{end}}
+  <div class="card">
+    <form method="POST" action="/post/create">
+      <div class="form-group">
+        <label for="title">Titre</label>
+        <input type="text" id="title" name="title" placeholder="Un titre clair et accrocheur" required maxlength="200">
+      </div>
+      <div class="form-group">
+        <label for="content">Contenu</label>
+        <textarea id="content" name="content" rows="8" placeholder="Développe ton idée ici..." required></textarea>
+      </div>
+      <div class="form-group">
+        <label>Catégories</label>
+        <div class="checkbox-group">
+          {{range .Data.Categories}}
+          <label><input type="checkbox" name="categories" value="{{.ID}}"> {{.Name}}</label>
+          {{end}}
+        </div>
+      </div>
+      <div class="form-actions">
+        <a href="/" class="btn btn-ghost">Annuler</a>
+        <button type="submit" class="btn btn-primary">Publier</button>
+      </div>
+    </form>
+  </div>
+</div>
+{{end}}
