@@ -1,0 +1,70 @@
+.auth-wrapper {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.25rem;
+}
+
+.auth-box {
+  width: 100%;
+  max-width: 400px;
+}
+
+
+.auth-logo {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.auth-logo .brand {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.auth-logo .brand span { color: var(--accent); }
+
+.auth-logo p {
+  color: var(--muted);
+  font-size: 0.875rem;
+  margin-top: 0.4rem;
+}
+
+
+.form-group { margin-bottom: 1rem; }
+
+label {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--sub);
+  margin-bottom: 0.4rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+input[type=text],
+input[type=email],
+input[type=password] {
+  width: 100%;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  font-size: 0.95rem;
+  padding: 0.6rem 0.9rem;
+  outline: none;
+  transition: border-color 0.15s;
+  font-family: inherit;
+}
+
+input:focus { border-color: var(--accent); }
+
+
+.auth-footer {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.875rem;
+  color: var(--muted);
+}
