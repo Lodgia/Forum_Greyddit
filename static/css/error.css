@@ -1,0 +1,21 @@
+.error-wrapper {
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.25rem;
+}
+
+.error-box { text-align: center; max-width: 400px; }
+
+.error-code {
+  font-size: 4rem;
+  font-weight: 800;
+  color: var(--border);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.error-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; }
+
+.error-msg { color: var(--sub); font-size: 0.9rem; margin-bottom: 1.5rem; }
