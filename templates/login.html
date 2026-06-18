@@ -10,8 +10,8 @@
 <div class="auth-wrapper">
   <div class="auth-box">
     <div class="auth-logo">
-      <div class="brand">grey<span>ddit</span></div>
-      <p>Bon retour parmi nous.</p>
+      <div class="brand"><span style="color: orange">greyddit</span></div>
+      <p><span style="color: white">Bon retour parmi nous.</span></p>
     </div>
     {{if and .Data .Data.Error}}
       <div class="alert alert-error">{{.Data.Error}}</div>
@@ -29,7 +29,7 @@
         <button type="submit" class="btn btn-primary btn-full">Se connecter</button>
       </form>
     </div>
-    <p class="auth-footer">Pas encore de compte ? <a href="/register">S'inscrire</a></p>
+    <p class="auth-footer"><span style="color: white">Pas encore de compte ? </span><a href="/register">S'inscrire</a></p>
   </div>
 </div>
 {{end}}

@@ -29,7 +29,7 @@
         <label>Catégories</label>
         <div class="checkbox-group">
           {{range .Data.Categories}}
-          <label><input type="checkbox" name="categories" value="{{.ID}}"> {{.Name}}</label>
+          <label><input type="checkbox" name="categories" value="{{.ID}}"> <span style="color: white">{{.Name}}</span></label>
           {{end}}
         </div>
       </div>

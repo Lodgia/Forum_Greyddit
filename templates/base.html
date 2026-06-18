@@ -12,29 +12,32 @@
 
 <nav>
   <div class="nav-inner">
-    <a href="/" class="nav-logo">grey<span>ddit</span></a>
+    <a href="/" class="nav-logo"><span style="color: orange">greyddit</span></a>
+
     <div class="nav-links">
-      <a href="/">Accueil</a>
+      <a href="/"><span style="color: white">Accueil</span></a>
     </div>
+
     <div class="nav-auth">
       {{if .CurrentUser}}
         <a href="/post/create" class="btn btn-primary">+ Poster</a>
         <form method="POST" action="/logout">
-          <button type="submit" class="btn btn-ghost">Déconnexion</button>
+          <button type="submit" class="btn btn-ghost"><span style="color: white">Déconnexion</span></button>
         </form>
       {{else}}
-        <a href="/login" class="btn btn-ghost">Connexion</a>
+        <a href="/login" class="btn btn-ghost"><span style="color: white">Connexion</span></a>
         <a href="/register" class="btn btn-primary">S'inscrire</a>
       {{end}}
     </div>
-
-    <div class="sidebar-card">
-      <h3>À propos</h3>
-      <p style="font-size:0.875rem;color:var(--sub)">
-        Le forum des étudiants Ynov. Pas de prise de tête.
-      </p>
-    </div>
   </div>
+</nav>
+
+<div class="top-info container">
+  <div class="sidebar-card">
+    <h3>À propos</h3>
+    <p>Le forum des étudiants Ynov. Pas de prise de tête.</p>
+  </div>
+</div>
 </nav>
 
 {{block "content" .}}{{end}}

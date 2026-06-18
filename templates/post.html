@@ -47,9 +47,9 @@
           <div class="post-detail-content">{{$post.Content}}</div>
           {{if and $.CurrentUser (eq $.CurrentUser.ID $post.UserID)}}
           <div class="post-detail-actions">
-            <a href="/post/edit/{{$post.ID}}" class="btn btn-ghost btn-sm">✏️ Modifier</a>
+            <a href="/post/edit/{{$post.ID}}" class="btn btn-ghost btn-sm"> Modifier</a>
             <form method="POST" action="/post/delete/{{$post.ID}}" onsubmit="return confirm('Supprimer ?')">
-              <button type="submit" class="btn btn-danger btn-sm">🗑️ Supprimer</button>
+              <button type="submit" class="btn btn-danger btn-sm"> Supprimer</button>
             </form>
           </div>
           {{end}}
@@ -62,7 +62,7 @@
       <form method="POST" action="/comment/create">
         <input type="hidden" name="post_id" value="{{$post.ID}}">
         <div class="form-group">
-          <label for="comment-content">Ton commentaire</label>
+          <label for="comment-content"><span style="color: black">Ton commentaire</span></label>
           <textarea id="comment-content" name="content" rows="3" placeholder="Qu'est-ce que tu en penses ?"></textarea>
         </div>
         <button type="submit" class="btn btn-primary">Commenter</button>
@@ -75,7 +75,7 @@
     {{end}}
 
     <div class="card">
-      <div class="comments-header">{{len $comments}} commentaire{{if gt (len $comments) 1}}s{{end}}</div>
+      <div class="comments-header">{{len $comments}} <span style="color: black">commentaire</span>{{if gt (len $comments) 1}}s{{end}}</div>
       {{if $comments}}
         {{range $comments}}
         <div class="comment">
@@ -110,7 +110,7 @@
         </div>
         {{end}}
       {{else}}
-        <div class="empty"><p>Pas encore de commentaires.</p></div>
+        <div class="empty"><p><span style="color: black">Pas encore de commentaires.</span></p></div>
       {{end}}
     </div>
   </main>

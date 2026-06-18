@@ -1,5 +1,5 @@
 .page-wide {
-  max-width: 720px;
+  max-width: 740px;
   margin: 2rem auto;
   padding: 0 1.25rem;
 }
@@ -11,18 +11,21 @@
   margin-bottom: 1.25rem;
 }
 
-.page-heading h1 { font-size: 1.15rem; font-weight: 600; }
+.page-heading h1 {
+  font-size: 1.2rem;
+  font-weight: 800;
+}
 
-
-.form-group { margin-bottom: 1rem; }
+/* ── Champs ───────────────────────────────────── */
+.form-group { margin-bottom: 1.1rem; }
 
 label {
   display: block;
-  font-size: 0.82rem;
-  font-weight: 500;
+  font-size: 0.78rem;
+  font-weight: 800;
   color: var(--sub);
-  margin-bottom: 0.4rem;
-  letter-spacing: 0.02em;
+  margin-bottom: 0.45rem;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
 }
 
@@ -30,14 +33,15 @@ input[type=text],
 textarea,
 select {
   width: 100%;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  color: var(--text);
+  background: linear-gradient(180deg, #f8f6f6, #f7f8fb);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: black;
   font-size: 0.95rem;
-  padding: 0.6rem 0.9rem;
+  font-weight: 600;
+  padding: 0.65rem 1rem;
   outline: none;
-  transition: border-color 0.15s;
+  transition: border-color 0.15s, box-shadow 0.15s;
   font-family: inherit;
 }
 
@@ -45,47 +49,61 @@ input[type=text]:focus,
 textarea:focus,
 select:focus {
   border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(255,107,107,0.15);
 }
 
-textarea { resize: vertical; min-height: 120px; }
+textarea {
+  resize: vertical;
+  min-height: 130px;
+  line-height: 1.6;
+}
 
-
+/* ── Catégories pilules ───────────────────────── */
 .checkbox-group {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
-  margin-top: 0.4rem;
+  margin-top: 0.5rem;
 }
 
 .checkbox-group label {
   display: flex;
   align-items: center;
   gap: 0.4rem;
-  font-size: 0.875rem;
+  font-size: 0.82rem;
+  font-weight: 700;
   color: var(--sub);
   text-transform: none;
   letter-spacing: 0;
   cursor: pointer;
-  padding: 0.3rem 0.7rem;
-  background: var(--surface);
-  border: 1px solid var(--border);
+  padding: 0.35rem 0.85rem;
+  background: rgb(246, 129, 4);
+  border: 1.5px solid var(--border);
   border-radius: 20px;
-  transition: border-color 0.15s, color 0.15s;
+  transition: all 0.15s;
 }
 
 .checkbox-group label:hover {
-  border-color: var(--accent);
+  border-color: var(--blue);
   color: var(--text);
+  background: rgba(99, 99, 106, 0.941);
 }
 
-.checkbox-group input[type=checkbox] { accent-color: var(--accent); }
+.checkbox-group input[type=checkbox] { accent-color: black; }
 
+.checkbox-group input[type=checkbox]:checked + span,
+.checkbox-group label:has(input:checked) {
+  border-color: var(--blue);
+  background: rgba(110, 243, 124, 0.907);
+  color: var(--blue);
+}
 
+/* ── Actions ──────────────────────────────────── */
 .form-actions {
   display: flex;
   gap: 0.75rem;
   justify-content: flex-end;
-  margin-top: 1.25rem;
-  padding-top: 1rem;
+  margin-top: 1.5rem;
+  padding-top: 1.1rem;
   border-top: 1px solid var(--border);
 }

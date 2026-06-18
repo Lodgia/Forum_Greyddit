@@ -54,7 +54,7 @@
 
         <div class="post-body">
           <div class="post-meta">
-            posté par <a href="#">{{.Username}}</a> · <time>{{.CreatedAt.Format "02/01/2006"}}</time>
+            <spanK style="color: white">posté par </spanK><a href="#"><span style="color: white">{{.Username}}</span></a> · <time><span style="color: white">{{.CreatedAt.Format "02/01/2006"}}</span></time>
           </div>
           <div class="post-title"><a href="/post/{{.ID}}">{{.Title}}</a></div>
           {{if .Categories}}
@@ -63,11 +63,11 @@
           </div>
           {{end}}
           <div class="post-footer">
-            <a href="/post/{{.ID}}">💬 {{.CommentCount}} commentaire{{if gt .CommentCount 1}}s{{end}}</a>
+            <a href="/post/{{.ID}}">💬 {{.CommentCount}} <span style="color: white">commentaire</span>{{if gt .CommentCount 1}}s{{end}}</a>
             {{if and $.CurrentUser (eq $.CurrentUser.ID .UserID)}}
-              <a href="/post/edit/{{.ID}}">✏️ Modifier</a>
+              <a href="/post/edit/{{.ID}}"><span style="color: white">✏️ Modifier</span></a>
               <form method="POST" action="/post/delete/{{.ID}}" onsubmit="return confirm('Supprimer ce post ?')">
-                <button type="submit" class="btn-inline-delete">🗑️ Supprimer</button>
+                <button type="submit" class="btn-inline-delete"><span style="color: white">🗑️ Supprimer</span></button>
               </form>
             {{end}}
           </div>
