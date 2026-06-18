@@ -19,7 +19,6 @@ Forum communautaire inspiré de Reddit, développé en Go avec SQLite.
     - [Installer les dépendances](#installer-les-dépendances)
     - [Lancer le serveur](#lancer-le-serveur)
   - [Utilisation](#utilisation)
-    - [Lancer les tests](#lancer-les-tests)
     - [Accéder au site](#accéder-au-site)
   - [Base de données](#base-de-données)
   - [Sécurité](#sécurité)
@@ -95,9 +94,7 @@ Forum_Greyddit/
 │       ├── auth.css         # Pages login et register
 │       ├── form.css         # Pages create et edit
 │       └── error.css        # Page d'erreur
-│
-└── tests/
-    └── database_test.go     # Tests unitaires (base de données en mémoire)
+
 ```
 
 ---
@@ -143,13 +140,6 @@ La base de données `forum.db` est créée automatiquement au premier lancement 
 
 ## Utilisation
 
-### Lancer les tests
-
-```bash
-go test ./tests/ -v
-```
-
-Les tests tournent sur une base SQLite **en mémoire** — rapides et isolés, aucune donnée réelle n'est affectée.
 
 ### Accéder au site
 
