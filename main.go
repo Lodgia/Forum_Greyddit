@@ -47,8 +47,8 @@ func main() {
 	
 	withSession := middleware.SessionMiddleware(mux)
 
-	log.Println("Greyddit démarre sur http://localhost:5050")
-	if err := http.ListenAndServe(":5050", withSession); err != nil {
+	log.Println("Greyddit démarre sur http://localhost:8080")
+	if err := http.ListenAndServe(":8080", withSession); err != nil {
 		log.Fatal(err)
 	}
 }

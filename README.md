@@ -169,7 +169,7 @@ Le fichier `forum.db` contient 8 tables :
 | `comment_likes` | Votes sur les commentaires (+1 / -1) |
 | `sessions` | Sessions de connexion actives |
 
-Les catégories créées par défaut sont : **Général**, **Technologie**, **Humour**, **Questions**, **Annonces**.
+Les catégories créées par défaut sont : **Vie étudiante**, **Projets**, **Bons plans**, **Détente**, **Entraide**.
 
 ---
 

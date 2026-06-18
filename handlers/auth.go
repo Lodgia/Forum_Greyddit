@@ -46,7 +46,7 @@ func Register(w http.ResponseWriter, r *http.Request) {
 		ID: uuid.NewString(), Email: email, Username: username, Password: string(hash),
 	}
 	if err = database.CreateUser(user); err != nil {
-		renderTemplate(w, r, "register.html", map[string]string{"Error": "Email ou nom d'utilisateur déjà pris."})
+		renderTemplate(w, r, "register.html", map[string]string{"Error": "Ce pseudo ou cet email est déjà utilisé par quelqu'un d'autre."})
 		return
 	}
 	createSession(w, user.ID)
@@ -70,11 +70,11 @@ func Login(w http.ResponseWriter, r *http.Request) {
 	password := r.FormValue("password")
 	user, err := database.GetUserByEmail(email)
 	if err != nil {
-		renderTemplate(w, r, "login.html", map[string]string{"Error": "Email ou mot de passe incorrect."})
+		renderTemplate(w, r, "login.html", map[string]string{"Error": "On ne reconnaît pas ces identifiants, vérifie et réessaie."})
 		return
 	}
 	if err = bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(password)); err != nil {
-		renderTemplate(w, r, "login.html", map[string]string{"Error": "Email ou mot de passe incorrect."})
+		renderTemplate(w, r, "login.html", map[string]string{"Error": "On ne reconnaît pas ces identifiants, vérifie et réessaie."})
 		return
 	}
 	createSession(w, user.ID)

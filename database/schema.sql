@@ -77,8 +77,8 @@ CREATE TABLE IF NOT EXISTS sessions (
 
 
 INSERT OR IGNORE INTO categories (name, slug) VALUES
-    ('Général', 'general'),
-    ('Technologie', 'tech'),
-    ('Humour', 'humour'),
-    ('Questions', 'questions'),
-    ('Annonces', 'annonces');
+    ('Vie étudiante', 'vie-etudiante'),
+    ('Projets', 'projets'),
+    ('Bons plans', 'bons-plans'),
+    ('Détente', 'detente'),
+    ('Entraide', 'entraide');
