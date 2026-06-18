@@ -101,7 +101,7 @@
     {{if $.CurrentUser}}
     <div class="sidebar-card">
       <h3>Mon compte</h3>
-      <p class="sidebar-account-name">Connecté en tant que <strong>{{$.CurrentUser.Username}}</strong></p>
+      <p class="sidebar-account-name">Connecté en tant que <strong><span style="color: black">{{$.CurrentUser.Username}}</span></strong></p>
       <a href="/post/create" class="btn btn-primary btn-full">+ Nouveau post</a>
     </div>
     {{else}}
