@@ -69,10 +69,10 @@ input[type=text],
 input[type=email],
 input[type=password] {
   width: 100%;
-  background: linear-gradient(180deg, #f7f7f7, #dfe8ff);
+  background: linear-gradient(180deg, #f9f8f8, #fcfcfd);
   border: 1.5px solid var(--border);
   border-radius: var(--radius-sm);
-  color: var(--text);
+  color: black;
   font-size: 0.95rem;
   font-weight: 600;
   padding: 0.65rem 1rem;
