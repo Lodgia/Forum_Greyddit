@@ -116,7 +116,7 @@ Forum_Greyddit/
 ### Cloner le projet
 
 ```bash
-git clone https://github.com/votre-utilisateur/Forum_Greyddit.git
+git clone https://github.com/Lodgia/Forum_Greyddit.git
 cd Forum_Greyddit
 ```
 
